@@ -5,7 +5,7 @@
 int main() {
     srand(time(NULL)); //crea il generatore
 
-    // Genera un numero casuale da 0 a 32767
+    // Genera un numero casuale da 0 a 32767 (ovvero il massimo)
     int var1 = rand();
 
 
