@@ -9,6 +9,6 @@ int main() {
     int var1 = rand();
 
 
-    // Genera un numero casuale da 0 a 99
+    // Genera un numero casuale da 0 a 99 (ovvero 100-1)
     int var2 = rand() % 100;
 }
