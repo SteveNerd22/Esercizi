@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esercizi di Programmazione</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .exercise {
+            margin-bottom: 30px;
+        }
+        .exercise h2 {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .description {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-left: 5px solid #4CAF50;
+            margin-bottom: 20px;
+        }
+        .solution {
+            background-color: #eaeaea;
+            padding: 15px;
+            border-radius: 4px;
+            display: none; /* La soluzione è nascosta di default */
+            margin-top: 10px;
+        }
+        code {
+            background-color: #eaeaea;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #d6336c;
+        }
+        p {
+            margin: 0 0 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Esercizi di Programmazione</h1>
+
+    <!-- Esercizio 1 -->
+    <div class="exercise">
+        <h2>Esercizio 1: Condizioni con numeri interi</h2>
+        <div class="description">
+            <p>Scrivi un programma che prenda in input due numeri interi, <code>value1</code> e <code>value2</code>. Dopo aver preso i due numeri, il programma deve verificare le seguenti condizioni:</p>
+            <ul>
+                <li>Se la somma dei due interi è maggiore del doppio di <code>value1</code>, stampa: <code>2 * value2 - value1 + value2</code></li>
+                <li>Se la somma dei due interi è maggiore del doppio di <code>value2</code>, stampa: <code>2 * value1 - value1 + value2</code></li>
+                <li>Se la somma dei due interi è minore di 10, stampa: <code>value1</code></li>
+                <li>Se entrambi <code>value1</code> e <code>value2</code> sono negativi, stampa: <code>"Errore"</code></li>
+            </ul>
+            <p>Se uno solo dei due numeri è negativo, rendilo positivo e poi verifica le condizioni.</p>
+            <p><code>IMPORTANTE:</code> se 2 o più condizioni sono vere contemporaneamente bisogna che vengano stampate ognuna delle stampe delle condizioni verificate <strong>tranne</strong> nel caso di <code>ERRORE</code>, in quel caso va stampato solo il messaggio di errore</p>
+        </div>
+        <button onclick="toggleSolution(1)">Mostra Soluzione</button>
+        <div id="solution1" style="display: none" class="solution">
+            <p>Esempio di soluzione (in C):</p>
+            <pre><code>
+int main() {
+    if (value1 < 0 && value2 < 0) {
+        printf("Errore");
+    } else {
+        if (value1 < 0) {
+            value1 = -value1;
+        }
+        if (value2 < 0)
+            value2 = -value2;
+        }
+        somma = value1 + value2;
+
+        if (somma > 2 * value1) {
+            printf("%d",(2 * value2 - value1 + value2));
+        } else if (somma > 2 * value2) {
+            printf("%d",(2 * value1 - value1 + value2));
+        } else if (somma < 10) {
+            printf("%d",value1);
+        }
+    }
+}
+                </code></pre>
+        </div>
+    </div>
+
+    <!-- Esercizio 2 -->
+    <div class="exercise">
+        <h2>Esercizio 2: La Fortuna del Dilettante</h2>
+        <div class="description">
+            <p>In questo esercizio, simuleremo una versione semplificata del gioco del Black Jack. Il programma deve:</p>
+            <ul>
+                <li>Generare una variabile <code>totaleAccumulato</code> che rappresenta il numero di punti accumulati dal giocatore, inizialmente impostato a 0.</li>
+                <li>Generare una variabile <code>valoreCarta</code> che rappresenta il valore della prossima carta, con valori casuali tra 1 e 11.</li>
+            </ul>
+            <p>Il gioco segue le seguenti regole:</p>
+            <ul>
+                <li>Il giocatore può decidere se girare la carta o fermarsi, fino a 3 volte.</li>
+                <li>Se il giocatore supera il punteggio di 21, perde immediatamente.</li>
+                <li>Se un giocatore raggiunge esattamente 21, chiudendo subito il gioco.</li>
+                <li>Dopo tre turni o quando il giocatore decide di fermarsi, si passa al secondo giocatore.</li>
+                <li>Il giocatore con il punteggio più alto alla fine del gioco vince, a meno che qualcuno non abbia totalizzato esattamente 21.</li>
+            </ul>
+           <p><code>IMPORTANTE:</code> se si vuole sapere di più su come generare un numero casuale andare su <a href="https://github.com/SteveNerd22/Esercizi/blob/main/Random.C">GitHub</a> per vedere come usare <code>stdlib.h</code> e <code>time.h</code></p>
+        </div>
+        <button onclick="toggleSolution(2)">Mostra Soluzione</button>
+        <div id="solution2" style="display: none" class="solution">
+            <p>Esempio di soluzione (in C):</p>
+            <pre><code>
+int main() {
+    srand(time(NULL));
+    int totaleGiocatore1 = 0;
+    int totaleGiocatore2 = 0;
+    bool continuePlaying = true;
+
+    int opzione;
+
+    printf("giocatore 1 è il tuo turno:\n");
+
+    printf("cosa vuoi fare: (giocare = 1, fermarti = tutto il resto)\n");
+    scanf("%d", &opzione);
+    if(opzione == 1 && continuePlaying) {
+        printf("\nP1 ha deciso di giocare\n");
+        int card = (rand() % 11) +1;
+        totaleGiocatore1 += card;
+        printf("ecco la tua carta: %d", card);
+        printf("adesso hai %d punti in totale", totaleGiocatore1);
+    } else if(opzione != 1){
+        continuePlaying = false;
+        printf("\nP1 ha deciso di fermarsi\n");
+    }
+    printf("cosa vuoi fare: (giocare = 1, fermarti = tutto il resto)\n");
+    scanf("%d", &opzione);
+    if(opzione == 1) {
+        printf("\nP1 ha deciso di giocare\n");
+        int card = (rand() % 11) +1;
+        totaleGiocatore1 += card;
+        printf("ecco la tua carta: %d\n", card);
+        printf("adesso hai %d punti in totale\n", totaleGiocatore1);
+        if(totaleGiocatore1 > 21) {
+            printf("mi dispiace, hai superato 21\n");
+            continuePlaying = false;
+        }
+        if(totaleGiocatore1 == 21) {
+            printf("congratulazioni, hai vinto! Hai fatto esattamente 21\n");
+            continuePlaying = false;
+        }
+    } else if(opzione != 1){
+        continuePlaying = false;
+        printf("\nP1 ha deciso di fermarsi\n");
+    }
+    printf("cosa vuoi fare: (giocare = 1, fermarti = tutto il resto)\n");
+    scanf("%d", &opzione);
+    if(opzione == 1) {
+        printf("\nP1 ha deciso di giocare\n");
+        int card = (rand() % 11) +1;
+        totaleGiocatore1 += card;
+        printf("ecco la tua carta: %d", card);
+        printf("adesso hai %d punti in totale", totaleGiocatore1);
+    } else if(opzione != 1){
+        continuePlaying = false;
+        printf("\nP1 ha deciso di fermarsi\n");
+    }
+
+    continuePlaying = true;
+    if(totaleGiocatore1 == 21) {
+        continuePlaying = false;
+    }
+
+    printf("\ngiocatore 2 è il tuo turno\n");
+
+
+    printf("cosa vuoi fare: (giocare = 1, fermarti = tutto il resto)\n");
+    scanf("%d", &opzione);
+    if(opzione == 1 && continuePlaying) {
+        printf("\nP2 ha deciso di giocare\n");
+        int card = (rand() % 11) +1;
+        totaleGiocatore2 += card;
+        printf("ecco la tua carta: %d", card);
+        printf("adesso hai %d punti in totale", totaleGiocatore2);
+    } else if(opzione != 1){
+        continuePlaying = false;
+        printf("\nP2 ha deciso di fermarsi\n");
+    }
+    printf("cosa vuoi fare: (giocare = 1, fermarti = tutto il resto)\n");
+    scanf("%d", &opzione);
+    if(opzione == 1) {
+        printf("\nP2 ha deciso di giocare\n");
+        int card = (rand() % 11) +1;
+        totaleGiocatore2 += card;
+        printf("ecco la tua carta: %d\n", card);
+        printf("adesso hai %d punti in totale\n", totaleGiocatore2);
+        if(totaleGiocatore2 > 21) {
+            printf("mi dispiace, hai superato 21\n");
+            continuePlaying = false;
+        }
+        if(totaleGiocatore2 == 21) {
+            printf("congratulazioni, hai vinto! Hai fatto esattamente 21\n");
+            continuePlaying = false;
+        }
+    } else if(opzione != 1){
+        continuePlaying = false;
+        printf("\nP1 ha deciso di fermarsi\n");
+    }
+    printf("cosa vuoi fare: (giocare = 1, fermarti = tutto il resto)\n");
+    scanf("%d", &opzione);
+    if(opzione == 1) {
+        printf("\nP1 ha deciso di giocare\n");
+        int card = (rand() % 11) +1;
+        totaleGiocatore2 += card;
+        printf("ecco la tua carta: %d", card);
+        printf("adesso hai %d punti in totale", totaleGiocatore2);
+    } else if(opzione != 1){
+        continuePlaying = false;
+        printf("\nP1 ha deciso di fermarsi\n");
+    }
+
+    if(totaleGiocatore1 > totaleGiocatore2) {
+        printf("\n\n\nED IL VINCITORE E' GIOCATORE 1");
+    } else if(totaleGiocatore1 < totaleGiocatore2){
+        printf("\n\n\nED IL VINCITORE E' GIOCATORE 2");
+    } else {
+        printf("\n\n\nED IL VINCITORE E' NESSUNO");
+    }
+}
+                </code></pre>
+        </div>
+    </div>
+    <div class="exercise">
+        <h2>Esercizio 3: Decifrare una data da un intero</h2>
+        <div class="description">
+            <p>Scrivi un programma che prenda un intero di 8 cifre che rappresenta una data nel formato GGMMAAAA e lo decifri nelle sue componenti:</p>
+            <ul>
+                <li>Le prime due cifre rappresentano il giorno</li>
+                <li>Le seconde due cifre rappresentano il mese</li>
+                <li>Le ultime quattro cifre rappresentano l'anno</li>
+            </ul>
+            <p>Ad esempio, l'intero <code>12111450</code> rappresenta il giorno <code>12 novembre 1450</code>.</p>
+            <p>avvisare l'utente con un messaggio in caso l'intero che rappresenta la data da decifrare non rappresenti una data reale o non è scritto nella forma corretta.</p>
+            <p><strong>Nota:</strong> Si accettano solo anni a 4 cifre.</p>
+            <p><code>IMPORTANTE:</code> fare attenzione ai casi limite.</p>
+        </div>
+        <button class="spoiler-btn" onclick="toggleSolution(3)">Mostra Soluzione</button>
+        <div id="solution3" style="display: none" class="solution">
+        <pre><code>
+int main() {
+    int data;
+    int anno = data % 10000;
+    data = data / 10000;
+    int mese = data % 100;
+    data = data / 100;
+    int giorno = data;
+
+    if(giorno > 31 || mese > 12 || giorno <= 0 || mese <= 0) {
+        printf("la data inserita non è una vera data in formato GGMMAAAA");
+    } else {
+        bool isCorrect = true;
+        if(mese == 2 && giorno > 29) {
+            isCorrect = false;
+        }
+        if(mese == 4 && giorno > 30) {
+            isCorrect = false;
+        }
+        if(mese == 6 && giorno > 30) {
+            isCorrect = false;
+        }
+        if(mese == 9 && giorno > 30) {
+            isCorrect = false;
+        }
+        if(mese == 11 && giorno > 30) {
+            isCorrect = false;
+        }
+
+        if(!isCorrect) {
+            printf("la data inserita non è una vera data, non esiste il girno %d nel mese %d", giorno, mese);
+        } else {
+            printf("%d ",giorno);
+            if(mese == 1) {
+                printf("gennaio ");
+            }
+            if(mese == 2) {
+                printf("febbraio ");
+            }
+            if(mese == 3) {
+                printf("marzo ");
+            }
+            if(mese == 4) {
+                printf("aprile ");
+            }
+            if(mese == 5) {
+                printf("maggio ");
+            }
+            if(mese == 6) {
+                printf("giugno ");
+            }
+            if(mese == 7) {
+                printf("luglio ");
+            }
+            if(mese == 8) {
+                printf("agosto ");
+            }
+            if(mese == 9) {
+                printf("settembre ");
+            }
+            if(mese == 10) {
+                printf("ottobre ");
+            }
+            if(mese == 11) {
+                printf("novembre ");
+            }
+            if(mese == 12) {
+                printf("dicembre ");
+            }
+
+            printf("%d",anno);
+        }
+    }
+
+}
+        </code></pre>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleSolution(exerciseNumber) {
+        var solution = document.getElementById('solution' + exerciseNumber);
+        if (solution.style.display === 'none') {
+            solution.style.display = 'block';
+        } else {
+            solution.style.display = 'none';
+        }
+    }
+</script>
+
+</body>
+</html>
