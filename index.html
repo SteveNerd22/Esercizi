@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Esercizi di Programmazione</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -89,7 +92,7 @@
         <button onclick="toggleSolution(1)">Mostra Soluzione</button>
         <div id="solution1" style="display: none" class="solution">
             <p>Esempio di soluzione (in C):</p>
-            <pre><code>
+            <pre><code class="language-c">
 int main() {
     if (value1 < 0 && value2 < 0) {
         printf("Errore");
@@ -137,7 +140,7 @@ int main() {
         <button onclick="toggleSolution(2)">Mostra Soluzione</button>
         <div id="solution2" style="display: none" class="solution">
             <p>Esempio di soluzione (in C):</p>
-            <pre><code>
+            <pre><code class="language-c">
 int main() {
     srand(time(NULL));
     int totaleGiocatore1 = 0;
@@ -273,7 +276,8 @@ int main() {
         </div>
         <button class="spoiler-btn" onclick="toggleSolution(3)">Mostra Soluzione</button>
         <div id="solution3" style="display: none" class="solution">
-        <pre><code>
+        <p>Esempio di soluzione (in C):</p>
+        <pre><code class="language-c">
 int main() {
     int data;
     int anno = data % 10000;
